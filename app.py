@@ -7,7 +7,7 @@ import os
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-app.secret_key = '9490869496'
+app.secret_key = os.getenv("FLASK_SECRET_KEY", "dev-default")
 
 UPLOAD_FOLDER = os.path.join('static', 'forms', 'uploads')
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
