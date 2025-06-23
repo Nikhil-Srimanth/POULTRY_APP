@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Poultry Detect</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    body {
+      background-color: rgba(0, 0, 0, 0.9);
+      color: white;
+      margin: 0;
+    }
+
+    .header {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+      padding: 20px;
+    }
+
+    .head-right {
+      display: flex;
+      justify-content: right;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 7px;
+    }
+
+    .social-icons i {
+      color: #aaa;
+      font-size: 15px;
+      transition: color 0.3s ease;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      font-family: Arial, sans-serif;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: gray;
+      font-size: 10px;
+      transition: color 0.3s ease;
+    }
+
+    nav a.active {
+      font-weight: bold;
+      color: white;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    .content {
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .Images {
+      display: grid;
+      padding-top: 50px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    img {
+      border-radius: 8px;
+      width: 100%;
+      
+
+    }
+
+    button {
+      padding: 10px 20px;
+      color: white;
+      background-color: rgb(221, 75, 99);
+      border: none;
+      border-radius: 3px;
+      font-size: 10px;
+      cursor: pointer;
+    }
+
+    .upload-section {
+      margin-top: 40px;
+    }
+
+    input[type="file"] {
+      width: 300px;
+      padding: 5px;
+    }
+
+    .predict-button {
+      margin-top: 20px;
+      background-color: green;
+      font-size: 14px;
+    }
+
+    #file1 {
+      background-color: white;
+      color: black;
+      border-radius: 5px;
+    }
+
+    /* Profile Dropdown */
+    .profile-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .profile-icon {
+      background-color: #444;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: #222;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
+      z-index: 1;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .dropdown-content.show {
+      display: block;
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 10px 14px;
+      text-decoration: none;
+      display: block;
+      font-size: 13px;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #333;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div style="font-size: 20px;">Poultry Detect</div>
+
+    <nav>
+      <a href="#" data-page="home" class="active">HOME</a>
+      <a href="#" data-page="about">ABOUT</a>
+      <a href="#" data-page="contact">CONTACT</a>
+    </nav>
+
+    <div class="head-right">
+      <div class="profile-dropdown">
+        <div class="profile-icon" id="profileToggle">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="dropdown-content" id="profileMenu">
+          <a href="#">Logged in as <b>{{ session['user'] }}</b></a>
+          <a href="/logout">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div id="home" class="page active">
+      <p style="font-size: 30px;">Welcome to Poultry Health Hub,<br>
+        your comprehensive resource for<br>
+        poultry disease management and <br>
+        prevention.
+      </p>
+      <button onclick="showPrediction()">GET STARTED</button>
+      <div class="Images">
+        <img  src="{{ url_for('static', filename='assets/images/chick.jpg') }}" alt="chick1">
+        <img src="{{ url_for('static', filename='assets/images/chick2.jpg') }}" alt="chick2">
+        <img src="{{ url_for('static', filename='assets/images/chick3.jpg') }}" alt="chick3">
+        <img src="{{ url_for('static', filename='assets/images/chick4.jpg') }}" alt="chick4">
+      </div>
+    </div>
+
+    <div id="about" class="page">
+      <h1>About Us</h1>
+      <p>This is the about content.</p>
+    </div>
+
+    <div id="contact" class="page">
+      <h1>Contact Us</h1>
+      <div class="social-icons">
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-linkedin-in"></i>
+      </div>
+    </div>
+
+    <div id="predict" class="page">
+      <h1 style="font-size: 60px; padding:60px;">Prediction</h1>
+      <h2>Image Classification</h2>
+
+      <div class="upload-section">
+        <form action="/predict" method="POST" enctype="multipart/form-data">
+          <label>Upload Your Image:</label>
+          <input type="file" name="file" id="file1" required><br>
+          <button type="submit" class="predict-button">Predict</button>
+        </form>
+      </div>
+
+      {% if result %}
+      <h2>Hence, the infection type detected as:</h2>
+      <p style="font-size: 20px; color: lightgreen;">{{ result }}</p>
+      <p>Confidence: {{ confidence | round(2) }}%</p>
+      <img src="{{ image_url }}" alt="Uploaded Image" width="300" style="margin-top: 20px;">
+      {% endif %}
+    </div>
+  </div>
+
+  <script>
+    // Page toggle logic
+    const links = document.querySelectorAll("nav a");
+    const pages = document.querySelectorAll(".page");
+
+    links.forEach(link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        links.forEach(l => l.classList.remove("active"));
+        link.classList.add("active");
+
+        pages.forEach(page => page.classList.remove("active"));
+        const pageId = link.getAttribute("data-page");
+        document.getElementById(pageId).classList.add("active");
+      });
+    });
+
+    function showPrediction() {
+      pages.forEach(p => p.classList.remove("active"));
+      document.getElementById("predict").classList.add("active");
+      links.forEach(link => link.classList.remove("active"));
+    }
+
+    // Show predict page automatically if prediction result exists
+    {% if show_predict %}
+    document.addEventListener("DOMContentLoaded", () => {
+      showPrediction();
+    });
+    {% endif %}
+
+    // Profile dropdown toggle
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggleBtn = document.getElementById("profileToggle");
+      const menu = document.getElementById("profileMenu");
+
+      toggleBtn.addEventListener("click", () => {
+        menu.classList.toggle("show");
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!toggleBtn.contains(event.target) && !menu.contains(event.target)) {
+          menu.classList.remove("show");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
