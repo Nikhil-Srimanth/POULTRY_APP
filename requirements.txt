@@ -4,3 +4,4 @@ tensorflow
 keras
 Pillow
 gunicorn
+python_version==3.10
