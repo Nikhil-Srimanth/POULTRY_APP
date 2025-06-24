@@ -1,8 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from tensorflow.keras.models import load_model
-from tensorflow.keras.applications import ResNet50
-from tensorflow.keras.layers import Flatten, Dense
-from tensorflow.keras import Model
 from tensorflow.keras.preprocessing.image import img_to_array,load_img
 from PIL import Image
 import numpy as np
@@ -10,19 +7,13 @@ import os
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-app.secret_key = os.getenv("FLASK_SECRET_KEY", "dev-default")
+app.secret_key = '9490869496'
 
 UPLOAD_FOLDER = os.path.join('static', 'forms', 'uploads')
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-
-model3 = load_model("Poultry_model.keras", custom_objects={
-    "ResNet50": ResNet50,
-    "Flatten": Flatten,
-    "Dense": Dense,
-    "Model": Model
-})
+model3 = load_model("Poultry_model.keras")
 CLASS_NAMES = ['Coccidiosis', 'Healthy', 'New Castle Disease', 'Salmonella']
 
 USERS = {
