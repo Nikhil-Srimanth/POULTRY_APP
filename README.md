@@ -1,7 +1,7 @@
 ﻿# POULTRY_APP
 # 🐔 Poultry Disease Prediction System
 
-A smart web-based system to predict poultry diseases using machine learning models based on symptoms or images, helping farmers and poultry owners with early diagnosis and treatment recommendations.
+A smart web-based system to predict poultry diseases using deep learning models based on  images, helping farmers and poultry owners with early diagnosis.
 
 ## 🔍 Overview
 
@@ -11,22 +11,22 @@ Poultry farming is often affected by various diseases that spread rapidly and ca
 
 - 🧠 Predict diseases using a trained ML/DL model  
 - 📸 Image-based or form-based input options  
-- 🐥 Common diseases like Newcastle, Fowlpox, Salmonellosis, Avian Influenza  
+- 🐥 Common diseases like Newcastle, Salmonellosis,..etc 
 - 🌐 Flask-based web interface for easy access  
-- 📊 Displays disease name, description, and basic remedies  
+- 📊 Displays disease name, confidence, uploaded image 
 
 ## 🧰 Tech Stack
 
-- **Frontend**: HTML, CSS, Bootstrap
+- **Frontend**: HTML, CSS
 - **Backend**: Python, Flask
-- **Machine Learning**: scikit-learn / TensorFlow / Keras
-- **Libraries**: OpenCV, NumPy, Pandas, Pillow
+- **Machine Learning**: TensorFlow / Keras
+- **Libraries**: NumPy, Pandas, Pillow
 
 ## 🧪 Model Training
 
 - Dataset: Collected from online poultry disease databases and image datasets
 - Preprocessing: Image resizing, normalization, and augmentation
-- Algorithms: CNN (for image), Random Forest / SVM (for symptoms)
+- Algorithms: Transfer Lerning using ResNet50
 - Accuracy: ~90%+ on validation data
 
 
