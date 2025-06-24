@@ -1,27 +1,54 @@
 ﻿# POULTRY_APP
-🐔 Poultry Disease Prediction App
-A Flask-based web application that predicts poultry diseases using deep learning models. The app allows users to upload images or input symptoms to identify possible diseases in poultry birds, helping farmers take timely actions to reduce mortality and improve health.
+# 🐔 Poultry Disease Prediction System
 
-🚀 Features
-🧠 Deep learning model for poultry disease classification
+A smart web-based system to predict poultry diseases using deep learning models based on  images, helping farmers and poultry owners with early diagnosis.
 
-📁 Upload image of infected bird or input symptoms
+## 🔍 Overview
 
-📊 Displays prediction with confidence score
+Poultry farming is often affected by various diseases that spread rapidly and cause significant economic losses. This project aims to assist farmers by predicting diseases based on either user-input symptoms or uploaded images, allowing timely interventions.
 
-🔧 Built using Flask, TensorFlow/Keras
+## ✅ Features
 
-🎨 Clean web interface with HTML/CSS/Bootstrap
+- 🧠 Predict diseases using a trained ML/DL model  
+- 📸 Image-based or form-based input options  
+- 🐥 Common diseases like Newcastle, Salmonellosis,..etc 
+- 🌐 Flask-based web interface for easy access  
+- 📊 Displays disease name, confidence, uploaded image 
 
-💾 Model files handled via local or cloud storage
+## 🧰 Tech Stack
 
-🛠️ Tech Stack
-Frontend: HTML, CSS, Bootstrap
+- **Frontend**: HTML, CSS
+- **Backend**: Python, Flask
+- **Machine Learning**: TensorFlow / Keras
+- **Libraries**: NumPy, Pandas, Pillow
 
-Backend: Flask (Python)
+## 🧪 Model Training
 
-ML Framework: TensorFlow / Keras
+- Dataset: Collected from online poultry disease databases and image datasets
+- Preprocessing: Image resizing, normalization, and augmentation
+- Algorithms: Transfer Lerning using ResNet50
+- Accuracy: ~90%+ on validation data
 
-Model Format: .h5 / .pkl
 
-Hosting: (Render / Railway / Localhost)
+## 🧑‍💻 Setup & Run
+
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/poultry-disease-prediction.git
+   cd poultry-disease-prediction
+2. Create a virtual environment and activate it (optional):
+   ```bash
+   python -m venv venv
+   source venv/bin/activate
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+4. Run the Flask app:
+   ```bash
+   python app.py
+5. Open browser and visit:
+   http://127.0.0.1:500
+   
+
+

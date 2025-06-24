@@ -7,15 +7,14 @@ import os
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-app.secret_key = '9490869496'
+app.secret_key = os.getenv("FLASK_SECRET_KEY", "dev-default")
 
 UPLOAD_FOLDER = os.path.join('static', 'forms', 'uploads')
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-model = load_model("static/assets/models/poultry_model.h5")
-model2 = load_model("static/assets/models/model111_poultry.h5")
-model3 = load_model("static/assets/models/model222_poultry_r50.h5")
+
+model3 = load_model("model222_poultry_r50.h5")
 CLASS_NAMES = ['Coccidiosis', 'Healthy', 'New Castle Disease', 'Salmonella']
 
 USERS = {
