@@ -5,74 +5,106 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <style>
     body {
-      background: linear-gradient(to right, #ffe29f, #ffa99f);
-      color: white;
       margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #FAD961, #F76B1C);
+      color: #333;
     }
 
     .header {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      background-color:rgba(255,255,255,0.3);
+      grid-template-columns: 1fr auto 1fr;
+      background: rgba(255, 255, 255, 0.5);
+      padding: 20px 40px;
       align-items: center;
-      padding: 20px;
-      color:#222;
-      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
 
-    .head-right {
-      display: flex;
-      justify-content: right;
-      gap: 20px;
-      align-items: center;
-    }
-
-    .social-icons {
-      display: flex;
-      gap: 7px;
-    }
-
-    .social-icons i {
-      color: #aaa;
-      font-size: 15px;
-      transition: color 0.3s ease;
+    .header > div:first-child {
+      font-size: 24px;
+      font-weight: bold;
+      color: #2c3e50;
     }
 
     nav {
       display: flex;
       justify-content: center;
-      gap: 30px;
-      font-family: Arial, sans-serif;
+      gap: 25px;
     }
 
     nav a {
       text-decoration: none;
-      color: rgb(27, 19, 19);
-      font-size: 10px;
-      transition: color 0.3s ease;
-    }
-
-    nav a.active {
-      font-weight: bold;
-      color: rgb(0, 0, 0);
+      color: #2c3e50;
       font-size: 14px;
-      
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
     }
 
+    nav a.active,
     nav a:hover {
-      color: rgb(0, 0, 0);
-      font-weight: bold;
+      color: #d35400;
+      font-weight: 700;
+    }
+
+    .head-right {
+      display: flex;
+      justify-content: flex-end;
+      gap: 20px;
+    }
+
+    .profile-icon {
+      background-color: #d35400;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: white;
+      min-width: 180px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .dropdown-content a {
+      color: #333;
+      padding: 10px 14px;
+      display: block;
+      text-decoration: none;
       font-size: 14px;
-      transition: font-size 0.3s ease, font-weight 0.3s ease;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .dropdown-content.show {
+      display: block;
     }
 
     .content {
-      padding: 20px;
+      padding: 40px 20px;
       display: flex;
-      justify-content: center;
-      text-align: center;
       flex-direction: column;
       align-items: center;
+      text-align: center;
+    }
+
+    .content h1, .content h2 {
+      color: #2c3e50;
     }
 
     .page {
@@ -85,26 +117,36 @@
 
     .Images {
       display: grid;
-      padding-top: 50px;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      padding-top: 30px;
+      width: 90%;
     }
 
-    img {
-      border-radius: 8px;
-      width: 100%;
-      
+    .Images img {
+      border-radius: 10px;
+      margin-right:20px;
+      transition: transform 0.3s ease;
+    }
 
+    .Images img:hover {
+      transform: scale(1.05);
     }
 
     button {
-      padding: 10px 20px;
+      padding: 12px 30px;
+      background-color: #e74c3c;
       color: white;
-      background-color: rgb(221, 75, 99);
       border: none;
-      border-radius: 3px;
-      font-size: 10px;
+      border-radius: 25px;
+      font-size: 14px;
+      margin-top: 20px;
       cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #c0392b;
     }
 
     .upload-section {
@@ -112,78 +154,54 @@
     }
 
     input[type="file"] {
-      width: 300px;
-      padding: 5px;
+      margin-top: 10px;
+      padding: 6px;
+      width: 280px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: white;
     }
 
     .predict-button {
-      margin-top: 20px;
-      background-color: green;
-      font-size: 14px;
+      background-color: #27ae60;
+      font-size: 15px;
     }
 
-    #file1 {
-      background-color: white;
-      color: black;
-      border-radius: 5px;
+    .predict-button:hover {
+      background-color: #219150;
     }
 
-    .profile-dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    .profile-icon {
-      background-color: #444;
-      border-radius: 50%;
-      width: 35px;
-      height: 35px;
+    .social-icons {
       display: flex;
+      gap: 15px;
       justify-content: center;
-      align-items: center;
-      color: white;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    .social-icons i {
+      color: #333;
+      transition: color 0.3s ease;
       cursor: pointer;
-      font-size: 16px;
     }
 
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      right: 0;
-      background-color: #222;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
-      z-index: 1;
-      border-radius: 8px;
-      overflow: hidden;
+    .social-icons i:hover {
+      color: #e67e22;
     }
 
-    .dropdown-content.show {
-      display: block;
-    }
-
-    .dropdown-content a {
-      color: white;
-      padding: 10px 14px;
-      text-decoration: none;
-      display: block;
-      font-size: 13px;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #333;
+    a {
+      color: #e67e22;
     }
 
   </style>
 </head>
 <body>
   <div class="header">
-    <div style="font-size: 20px;">Poultry Detect</div>
+    <div>Poultry Detect</div>
 
     <nav>
       <a href="#" data-page="home" class="active">HOME</a>
-      <a href="#" data-page="about">ABOUT</a>
-      <a href="#" data-page="contact">CONTACT</a>
+      <a href="#" data-page="about-contact">ABOUT & CONTACT</a>
     </nav>
 
     <div class="head-right">
@@ -201,27 +219,30 @@
 
   <div class="content">
     <div id="home" class="page active">
-      <p style="font-size: 30px;">Welcome to Poultry Health Hub,<br>
+      <p style="font-size: 28px; line-height: 1.6;">
+        Welcome to <strong>Poultry Health Hub</strong>,<br>
         your comprehensive resource for<br>
-        poultry disease management and <br>
-        prevention.
+        poultry disease management and prevention.
       </p>
       <button onclick="showPrediction()">GET STARTED</button>
       <div class="Images">
-        <img  src="{{ url_for('static', filename='assets/images/chick.jpg') }}" alt="chick1">
+        <img src="{{ url_for('static', filename='assets/images/chick.jpg') }}" alt="chick1">
         <img src="{{ url_for('static', filename='assets/images/chick2.jpg') }}" alt="chick2">
         <img src="{{ url_for('static', filename='assets/images/chick3.jpg') }}" alt="chick3">
         <img src="{{ url_for('static', filename='assets/images/chick4.jpg') }}" alt="chick4">
       </div>
     </div>
 
-    <div id="about" class="page">
-      <h1>About Us</h1>
-      <p>This is the about content.</p>
-    </div>
+    <div id="about-contact" class="page">
+      <h1>About & Contact</h1>
+      <p style="max-width: 600px; margin: auto;">
+        <strong>Poultry Detect</strong> is an AI-powered platform designed to help poultry farmers identify and classify poultry diseases early. 
+        Our mission is to reduce mortality and economic loss by providing fast, reliable diagnostics using image classification.
+      </p>
 
-    <div id="contact" class="page">
-      <h1>Contact Us</h1>
+      <h2 style="margin-top: 30px;">Get in Touch</h2>
+      <p>You can reach us at: <a href="mailto:nikhilponnada@gmail.com">nikhilponnada@gmail.com</a></p>
+
       <div class="social-icons">
         <i class="fab fa-twitter"></i>
         <i class="fab fa-facebook-f"></i>
@@ -231,28 +252,27 @@
     </div>
 
     <div id="predict" class="page">
-      <h1 style="font-size: 60px; ">Prediction</h1>
+      <h1 style="font-size: 50px;">Prediction</h1>
       <h2>Image Classification</h2>
 
       <div class="upload-section">
         <form action="/predict" method="POST" enctype="multipart/form-data">
-          <label>Upload Your Image:</label>
+          <label>Upload Your Image:</label><br>
           <input type="file" name="file" id="file1" required><br>
           <button type="submit" class="predict-button">Predict</button>
         </form>
       </div>
 
       {% if result %}
-      <h2>Hence, the infection type detected as:</h2>
-      <p style="font-size: 20px; color: rgb(0, 0, 0);">{{ result }}</p>
-      <p>Confidence: {{ confidence | round(2) }}%</p>
-      <img src="{{ image_url }}" alt="Uploaded Image" width="300" style="margin-top: 20px;">
+      <h2>Detected Infection:</h2>
+      <p style="font-size: 20px; color: #2c3e50;"><strong>{{ result }}</strong></p>
+      <p style="color:#34495e;">Confidence: {{ confidence | round(2) }}%</p>
+      <img src="{{ image_url }}" alt="Uploaded Image" width="300" style="margin-top: 20px; border-radius: 8px;">
       {% endif %}
     </div>
   </div>
 
   <script>
-    // Page toggle logic
     const links = document.querySelectorAll("nav a");
     const pages = document.querySelectorAll(".page");
 
@@ -274,14 +294,12 @@
       links.forEach(link => link.classList.remove("active"));
     }
 
-    // Show predict page automatically if prediction result exists
     {% if show_predict %}
     document.addEventListener("DOMContentLoaded", () => {
       showPrediction();
     });
     {% endif %}
 
-    // Profile dropdown toggle
     document.addEventListener("DOMContentLoaded", () => {
       const toggleBtn = document.getElementById("profileToggle");
       const menu = document.getElementById("profileMenu");
