@@ -5,8 +5,17 @@
 [username: admin]
 [password: password123]
 
+## 📌 Table of Contents
 
+- [About the Project](#about-the-project)
+- [Tech Stack](#tech-stack)
+- [How It Works](#how-it-works)
+- [Installation](#installation)
+- [Project Structure](#project-structure)
+- [Usage](#usage)
+- [Contact](#contact)
 
+## 📖 About the Project
 A smart web-based system to predict poultry diseases using deep learning models based on  images, helping farmers and poultry owners with early diagnosis.
 
 ## 🔍 Overview
@@ -60,6 +69,27 @@ Check out the deployed web app here:
    python app.py
 5. Open browser and visit:
    http://127.0.0.1:500
-   
 
 
+## 📁 Project Structure
+
+POULTRY_APP/
+├── app.py
+├── templates/
+│   ├── index.html
+│   └── login.html
+├── poultry_model.keras
+├── requirements.txt
+└── README.md
+
+##💡 Usage
+Open the app in your browser.
+Upload an image of the poultry.
+Wait for the prediction result.
+Then it will show the detected disease.
+
+## ✉️ Contact
+If you have any feedback or questions, feel free to contact me:
+
+📧 Nikhil Srimanth Ponnada
+📩 Email: nikhilsrimanth@gmail.com
