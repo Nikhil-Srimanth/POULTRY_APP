@@ -1,7 +1,8 @@
 ﻿# POULTRY_APP
 # 🐔 Poultry Disease Prediction System
+🔗 **[Demo Video](https://drive.google.com/file/d/17xPKsHQ7J1U07HJPSSu-HK2ikMQ_otBL/view?usp=drive_link)** 
+🔗 **[Live Deployed Demo ](https://web-production-ed4b7.up.railway.app/login)** 
 
-🔗 **[Live Demo](https://web-production-ed4b7.up.railway.app/login)** 
 [username: admin]
 [password: password123]
 
