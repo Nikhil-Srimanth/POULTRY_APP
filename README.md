@@ -1,6 +1,12 @@
 ﻿# POULTRY_APP
 # 🐔 Poultry Disease Prediction System
 
+🔗 **[Live Demo](https://web-production-ed4b7.up.railway.app/login)** 
+[username: admin]
+[password: password123]
+
+
+
 A smart web-based system to predict poultry diseases using deep learning models based on  images, helping farmers and poultry owners with early diagnosis.
 
 ## 🔍 Overview
@@ -28,6 +34,11 @@ Poultry farming is often affected by various diseases that spread rapidly and ca
 - Preprocessing: Image resizing, normalization, and augmentation
 - Algorithms: Transfer Lerning using ResNet50
 - Accuracy: ~90%+ on validation data
+
+## 🌐 Live Demo
+
+Check out the deployed web app here:  
+👉 (https://web-production-ed4b7.up.railway.app/login)
 
 
 ## 🧑‍💻 Setup & Run
