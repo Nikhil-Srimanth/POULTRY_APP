@@ -2,8 +2,8 @@
 # 🐔 Poultry Disease Prediction System
 
 🔗 **[Live Demo](https://web-production-ed4b7.up.railway.app/login)** 
-username: admin
-password: password123
+[username: admin]
+[password: password123]
 
 
 
