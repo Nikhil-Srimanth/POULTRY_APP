@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <style>
     body {
-      background-color: rgba(0, 0, 0, 0.9);
+      background: linear-gradient(to right, #ffe29f, #ffa99f);
       color: white;
       margin: 0;
     }
@@ -13,8 +13,11 @@
     .header {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
+      background-color:rgba(255,255,255,0.3);
       align-items: center;
       padding: 20px;
+      color:#222;
+      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     }
 
     .head-right {
@@ -44,18 +47,23 @@
 
     nav a {
       text-decoration: none;
-      color: gray;
+      color: rgb(27, 19, 19);
       font-size: 10px;
       transition: color 0.3s ease;
     }
 
     nav a.active {
       font-weight: bold;
-      color: white;
+      color: rgb(0, 0, 0);
+      font-size: 14px;
+      
     }
 
     nav a:hover {
-      color: white;
+      color: rgb(0, 0, 0);
+      font-weight: bold;
+      font-size: 14px;
+      transition: font-size 0.3s ease, font-weight 0.3s ease;
     }
 
     .content {
@@ -120,7 +128,6 @@
       border-radius: 5px;
     }
 
-    /* Profile Dropdown */
     .profile-dropdown {
       position: relative;
       display: inline-block;
@@ -224,7 +231,7 @@
     </div>
 
     <div id="predict" class="page">
-      <h1 style="font-size: 60px; padding:60px;">Prediction</h1>
+      <h1 style="font-size: 60px; ">Prediction</h1>
       <h2>Image Classification</h2>
 
       <div class="upload-section">
@@ -237,7 +244,7 @@
 
       {% if result %}
       <h2>Hence, the infection type detected as:</h2>
-      <p style="font-size: 20px; color: lightgreen;">{{ result }}</p>
+      <p style="font-size: 20px; color: rgb(0, 0, 0);">{{ result }}</p>
       <p>Confidence: {{ confidence | round(2) }}%</p>
       <img src="{{ image_url }}" alt="Uploaded Image" width="300" style="margin-top: 20px;">
       {% endif %}
